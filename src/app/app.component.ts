@@ -49,11 +49,21 @@ maxQuestions = Math.max(...this.No_Of_Questions);
 
     yAxis: [{
       title: {
-        text: 'Primary Axis'
+        text: 'Left Axis'
       },
       min:0,
       max:100,
     },
+    {
+      title: {
+        text: 'Right Axis'
+      },
+      min:0,
+      max:100,
+      opposite: true
+    },
+
+
     ],
     plotOptions: {
       column: {
