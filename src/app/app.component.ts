@@ -10,14 +10,15 @@ import { max } from 'rxjs';
 export class AppComponent {
 Highcharts: typeof Highcharts = Highcharts;
 
-No_Of_Questions = [150,100,300 ];
+No_Of_Questions = [330,100,180 ];
 
 // Find the minimum and maximum values in the array
-minQuestions= Math.min(...this.No_Of_Questions);
 maxQuestions = Math.max(...this.No_Of_Questions);
 
-// Normalizing each value to a range between 0 and 100
- normalizedValues = this.No_Of_Questions.map(value => (value) / (this.maxQuestions) *100);
+// minQuestions= Math.min(...this.No_Of_Questions);
+
+// // Normalizing each value to a range between 0 and 100
+//  normalizedValues = this.No_Of_Questions.map(value => (value) / (this.maxQuestions) *100);
 
 
 
@@ -34,36 +35,44 @@ maxQuestions = Math.max(...this.No_Of_Questions);
     series: [
       {
         name: 'No of Questions',
-        data: this.normalizedValues,
+        data: this.No_Of_Questions,
+        yAxis: 0,
       },
       {
         name: 'Accuracy',
-        data: [20, 30, 40],
+        data: [60, 70, 50],
+        yAxis: 1,
       }
     ],
+
 
     xAxis: {
       categories: ['Maths', 'Physics', 'Chemistry'],
 
     },
 
-    yAxis: [{
-      title: {
-        text: 'Left Axis'
+    yAxis: [
+      {
+        title: {
+          text: 'No of Questions'
+        },
+        // labels: {
+        //   format: '{value}'
+        // },
+        min: 0,
+        max: this.maxQuestions,
       },
-      min:0,
-      max:100,
-    },
-    {
-      title: {
-        text: 'Right Axis'
-      },
-      min:0,
-      max:100,
-      opposite: true
-    },
-
-
+      {
+        title: {
+          text: 'Accuracy'
+        },
+        // labels: {
+        //   format: '{value}'
+        // },
+        opposite: true,
+        min: 0,
+        max: 100
+      }
     ],
     plotOptions: {
       column: {
